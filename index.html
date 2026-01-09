@@ -430,6 +430,23 @@
         border-right: none;
       }
       
+      /* === HERO WIDTH CONTROL (DESKTOP) === */
+.hero-inner {
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+@media (min-width: 1024px) {
+  .hero {
+    min-height: 55vh;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+  }
+}
       .token-item:nth-child(odd) {
         border-right: 1px solid hsl(var(--border) / 0.5);
       }
@@ -439,6 +456,7 @@
 <body>
   <!-- Hero Section -->
   <section class="hero">
+  <div class="hero-inner">
     <div class="text-logo">CLAY</div>
     <h1 class="font-serif">
       <span class="light">Not mined.</span><br>
@@ -448,6 +466,7 @@
     <p class="font-sans">
       A transparent community token on Solana with fair distribution and simple utility.
     </p>
+  </div>
   </section>
 
   <!-- Disclaimer Banner -->
