@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clay Token - NotPrintedCLAY</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #f7f5f0, #e6e2d3);
+      color: #111;
+    }
+
+    /* Section styling */
+    section {
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    h1, h2 {
+      margin-bottom: 1rem;
+    }
+    h1 { font-size: 3rem; line-height: 1.2; }
+    h2 { font-size: 2rem; margin-top: 2rem; }
+    p {
+      max-width: 600px;
+      margin: 0 auto 1.5rem auto;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    /* HeroSection specific */
+    .text-clay-light { color: #b78c63; }
+    .text-primary { color: #0077ff; font-style: italic; }
+    .hero-logo { width: 150px; margin-bottom: 2rem; display: block; }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+      margin-top: 3rem;
+      width: 24px;
+      height: 40px;
+      border: 2px solid rgba(183,140,99,0.3);
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+      padding-top: 4px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .scroll-indicator div {
+      width: 6px;
+      height: 12px;
+      background: rgba(183,140,99,0.5);
+      border-radius: 3px;
+      animation: bounce 1s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(6px); }
+    }
+
+    /* Roadmap & Tokenomics styling */
+    .roadmap, .tokenomics {
+      background: rgba(255,255,255,0.6);
+      border-radius: 1rem;
+      padding: 2rem;
+      margin-top: 2rem;
+    }
+
+    /* Footer */
+    footer {
+      background: #f3f2f0;
+      padding: 2rem;
+      text-align: center;
+      margin-top: 4rem;
+      border-top: 1px solid #ddd;
+    }
+    footer a { color: #0077ff; text-decoration: none; font-weight: bold; }
+    footer p { margin-top: 0.5rem; color: #555; }
+
+    /* Responsive */
+    @media (min-width: 768px) { h1 { font-size: 4rem; } h2 { font-size: 2.5rem; } }
+    @media (min-width: 1024px) { h1 { font-size: 5rem; } }
+  </style>
+</head>
+<body>
+
+  <!-- HeroSection -->
+  <section id="home" style="min-height:70vh; display:flex; flex-direction:column; justify-content:center; align-items:center;">
+    <img src="clay-logo.png" alt="Clay Logo" class="hero-logo">
+    <h1>
+      <span class="text-clay-light">Not mined.</span>
+      <span>Not printed.</span>
+      <span class="text-primary">Shaped.</span>
+    </h1>
+    <p>A transparent community token on Solana with fair distribution, PoS - Stlye Staking and simple utility.</p>
+    <div class="scroll-indicator"><div></div></div>
+  </section>
+
+  <!-- Roadmap Section -->
+  <section id="roadmap">
+    <h2>Roadmap</h2>
+    <div class="roadmap">
+      <p>Phase 1: Community buiding</p>
+      <p>Phase 2: Deploy token & Create LP locked</p>
+      <p>Phase 3: Staking program</p>
+      <p>Phase 4: Marketing & strategic partnerships</p>
+    </div>
+  </section>
+
+  <!-- Tokenomics Section -->
+  <section id="tokenomics">
+    <h2>Tokenomics</h2>
+    <div class="tokenomics">
+      <p>Total Supply: 100,000,000 CLAY</p>
+      <p>Dev Token Locked: 20,000,000 CLAY 6,000,000 Vesting</p>
+      <p>Liquid Supply: 3,000,000 CLAY</p>
+      <p>LP Locked: 1,000,000 CLAY</p>
+      <p>Staking Pool: 10,000,000 CLAY (Reward 1%, Max Stake 10,000 CLAY)</p>
+      <p>Vesting Treasury: 60,000,000 CLAY</p>
+      <p style="margin-top:1rem; font-style:italic; color:#b78c63;">
+  🔒 Dev tokens are fully locked at launch — no early selling.
+</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>Follow us on social:</p>
+    <a href="https://X.com/NotPrintedCLAY" target="_blank">X.com/NotPrintedCLAY</a>
+    <p>&copy; 2026 NotPrintedCLAY</p>
+  </footer>
+
+</body>
+</html>
