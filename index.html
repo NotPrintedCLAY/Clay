@@ -3,133 +3,825 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Clay Token - NotPrintedCLAY</title>
+  <title>CLAY - Not mined. Not printed. Shaped.</title>
+  <meta name="description" content="A transparent community token on Solana with fair distribution and simple utility.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #f7f5f0, #e6e2d3);
-      color: #111;
+    :root {
+      --background: 40 30% 96%;
+      --foreground: 30 20% 15%;
+      --primary: 25 60% 45%;
+      --primary-foreground: 40 30% 96%;
+      --muted: 35 20% 70%;
+      --muted-foreground: 30 15% 40%;
+      --accent: 35 70% 50%;
+      --border: 35 25% 85%;
+      --destructive: 0 70% 50%;
+      --clay-sand: 38 35% 92%;
+      --clay-dark: 25 35% 20%;
+      --clay-cream: 40 40% 95%;
+      --clay-light: 25 50% 55%;
     }
 
-    /* Section styling */
-    section {
-      padding: 4rem 2rem;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: hsl(var(--background));
+      color: hsl(var(--foreground));
+      line-height: 1.6;
+    }
+
+    .font-serif {
+      font-family: 'Instrument Serif', serif;
+    }
+
+    .font-sans {
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      background: linear-gradient(180deg, hsl(40 30% 96%) 0%, hsl(38 35% 92%) 100%);
+      position: relative;
+      overflow: hidden;
       text-align: center;
     }
-    h1, h2 {
-      margin-bottom: 1rem;
-    }
-    h1 { font-size: 3rem; line-height: 1.2; }
-    h2 { font-size: 2rem; margin-top: 2rem; }
-    p {
-      max-width: 600px;
-      margin: 0 auto 1.5rem auto;
-      color: #555;
-      line-height: 1.5;
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
     }
 
-    /* HeroSection specific */
-    .text-clay-light { color: #b78c63; }
-    .text-primary { color: #0077ff; font-style: italic; }
-    .hero-logo { width: 150px; margin-bottom: 2rem; display: block; }
+    .hero h1 .light {
+      color: hsl(var(--clay-light));
+    }
 
-    /* Scroll indicator */
-    .scroll-indicator {
-      margin-top: 3rem;
-      width: 24px;
-      height: 40px;
-      border: 2px solid rgba(183,140,99,0.3);
-      border-radius: 12px;
+    .hero h1 .primary {
+      color: hsl(var(--primary));
+      font-style: italic;
+    }
+
+    .hero p {
+      font-size: 1.125rem;
+      color: hsl(var(--muted-foreground));
+      max-width: 36rem;
+    }
+
+    .logo {
+      width: 200px;
+      margin-bottom: 2rem;
+    }
+
+    /* Disclaimer Banner */
+    .disclaimer {
+      background-color: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+      padding: 1rem 2rem;
+      text-align: center;
+      font-size: 0.875rem;
+    }
+
+    /* Section styles */
+    section {
+      padding: 4rem 1.5rem;
+      max-width: 56rem;
+      margin: 0 auto;
+    }
+
+    .bg-sand {
+      background-color: hsl(var(--clay-sand));
+    }
+
+    .bg-sand section {
+      max-width: 100%;
+    }
+
+    .section-header {
       display: flex;
-      justify-content: center;
-      padding-top: 4px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .scroll-indicator div {
-      width: 6px;
-      height: 12px;
-      background: rgba(183,140,99,0.5);
-      border-radius: 3px;
-      animation: bounce 1s infinite;
-    }
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(6px); }
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
     }
 
-    /* Roadmap & Tokenomics styling */
-    .roadmap, .tokenomics {
-      background: rgba(255,255,255,0.6);
+    .section-number {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: hsl(var(--primary));
+      letter-spacing: 0.1em;
+    }
+
+    .section-title {
+      font-size: 1.75rem;
+    }
+
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, hsl(var(--border)) 0%, transparent 100%);
+    }
+
+    /* Cards */
+    .card {
+      background: linear-gradient(135deg, hsl(40 30% 98%) 0%, hsl(38 35% 95%) 100%);
       border-radius: 1rem;
       padding: 2rem;
-      margin-top: 2rem;
+      box-shadow: 0 4px 20px -5px hsl(var(--primary) / 0.1);
+      border: 1px solid hsl(var(--border) / 0.5);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    /* Principles */
+    .principle {
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      border: 1px solid hsl(var(--border) / 0.5);
+      background: hsl(var(--background));
+    }
+
+    .principle-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.5rem;
+      background: hsl(var(--primary) / 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      color: hsl(var(--primary));
+    }
+
+    .principle h3 {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .principle p {
+      font-size: 0.875rem;
+      color: hsl(var(--muted-foreground));
+    }
+
+    /* Token Overview */
+    .token-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 0;
+    }
+
+    .token-item {
+      padding: 1.5rem;
+      border-bottom: 1px solid hsl(var(--border) / 0.5);
+      border-right: 1px solid hsl(var(--border) / 0.5);
+    }
+
+    .token-item:last-child {
+      border-right: none;
+    }
+
+    .token-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: hsl(var(--muted-foreground));
+      margin-bottom: 0.5rem;
+    }
+
+    .token-value {
+      font-size: 1.25rem;
+    }
+
+    /* Tokenomics */
+    .allocation-bar {
+      display: flex;
+      height: 3rem;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      margin-bottom: 2rem;
+    }
+
+    .allocation-segment {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .allocation-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      border: 1px solid hsl(var(--border) / 0.5);
+      background: hsl(var(--background));
+    }
+
+    .allocation-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* Roadmap */
+    .roadmap-item {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .roadmap-line {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .roadmap-dot {
+      width: 1rem;
+      height: 1rem;
+      border-radius: 50%;
+      background: hsl(var(--primary));
+      flex-shrink: 0;
+    }
+
+    .roadmap-dot.upcoming {
+      background: hsl(var(--muted));
+    }
+
+    .roadmap-connector {
+      width: 2px;
+      flex: 1;
+      background: hsl(var(--border));
+    }
+
+    .roadmap-content {
+      flex: 1;
+      padding-bottom: 1.5rem;
+    }
+
+    .roadmap-phase {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: hsl(var(--primary));
+      margin-bottom: 0.25rem;
+    }
+
+    .roadmap-title {
+      font-size: 1.125rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .roadmap-items {
+      list-style: none;
+    }
+
+    .roadmap-items li {
+      font-size: 0.875rem;
+      color: hsl(var(--muted-foreground));
+      padding: 0.25rem 0;
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .roadmap-items li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: hsl(var(--primary));
+    }
+
+    /* Risks */
+    .risk-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.25rem;
+      border-radius: 0.75rem;
+      border: 1px solid hsl(var(--destructive) / 0.2);
+      background: hsl(var(--destructive) / 0.05);
+    }
+
+    .risk-icon {
+      color: hsl(var(--destructive));
+      flex-shrink: 0;
+    }
+
+    .risk-card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .risk-card p {
+      font-size: 0.875rem;
+      color: hsl(var(--muted-foreground));
     }
 
     /* Footer */
     footer {
-      background: #f3f2f0;
-      padding: 2rem;
+      background-color: hsl(var(--clay-dark));
+      color: hsl(var(--clay-cream));
+      padding: 3rem 1.5rem;
       text-align: center;
-      margin-top: 4rem;
-      border-top: 1px solid #ddd;
     }
-    footer a { color: #0077ff; text-decoration: none; font-weight: bold; }
-    footer p { margin-top: 0.5rem; color: #555; }
 
-    /* Responsive */
-    @media (min-width: 768px) { h1 { font-size: 4rem; } h2 { font-size: 2.5rem; } }
-    @media (min-width: 1024px) { h1 { font-size: 5rem; } }
+    footer a {
+      color: hsl(var(--clay-cream) / 0.6);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.2s;
+    }
+
+    footer a:hover {
+      color: hsl(var(--clay-cream));
+    }
+
+    .footer-disclaimer {
+      font-size: 0.75rem;
+      color: hsl(var(--clay-cream) / 0.4);
+      max-width: 42rem;
+      margin: 1.5rem auto 0;
+      line-height: 1.6;
+      border-top: 1px solid hsl(var(--clay-cream) / 0.1);
+      padding-top: 1.5rem;
+    }
+
+    /* Utilities */
+    .text-primary {
+      color: hsl(var(--primary));
+    }
+
+    .text-muted {
+      color: hsl(var(--muted-foreground));
+    }
+
+    .mb-4 {
+      margin-bottom: 1rem;
+    }
+
+    .mb-6 {
+      margin-bottom: 1.5rem;
+    }
+
+    strong {
+      font-weight: 600;
+    }
+
+    @media (max-width: 640px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .token-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      .token-item {
+        border-right: none;
+      }
+      
+      .token-item:nth-child(odd) {
+        border-right: 1px solid hsl(var(--border) / 0.5);
+      }
+    }
   </style>
 </head>
 <body>
-
-  <!-- HeroSection -->
-  <section id="home" style="min-height:70vh; display:flex; flex-direction:column; justify-content:center; align-items:center;">
-    <img src="clay-logo.png" alt="Clay Logo" class="hero-logo">
-    <h1>
-      <span class="text-clay-light">Not mined.</span>
-      <span>Not printed.</span>
-      <span class="text-primary">Shaped.</span>
+  <!-- Hero Section -->
+  <section class="hero">
+    <img src="clay-logo.png" alt="CLAY Logo" class="logo" style="width: 180px;">
+    <h1 class="font-serif">
+      <span class="light">Not mined.</span><br>
+      Not printed.<br>
+      <span class="primary">Shaped.</span>
     </h1>
-    <p>A transparent community token on Solana with fair distribution, PoS - Stlye Staking and simple utility.</p>
-    <div class="scroll-indicator"><div></div></div>
+    <p class="font-sans">
+      A transparent community token on Solana with fair distribution and simple utility.
+    </p>
   </section>
 
-  <!-- Roadmap Section -->
-  <section id="roadmap">
-    <h2>Roadmap</h2>
-    <div class="roadmap">
-      <p>Phase 1: Community buiding</p>
-      <p>Phase 2: Deploy token & Create LP locked</p>
-      <p>Phase 3: Staking program</p>
-      <p>Phase 4: Marketing & strategic partnerships</p>
+  <!-- Disclaimer Banner -->
+  <div class="disclaimer">
+    <strong>Disclaimer:</strong> CLAY is a meme token with no intrinsic value or financial return expectation. This is not financial advice.
+  </div>
+
+  <!-- Introduction -->
+  <section>
+    <div class="section-header">
+      <span class="section-number font-sans">01</span>
+      <h2 class="section-title font-serif">Introduction</h2>
+      <div class="section-line"></div>
+    </div>
+    <p class="font-sans" style="font-size: 1.125rem; color: hsl(var(--foreground) / 0.8);">
+      CLAY is a community token on Solana, focusing on <strong class="text-primary">transparency</strong>, 
+      <strong class="text-primary">fair distribution</strong>, and <strong class="text-primary">simple utility</strong>. 
+      Its goal is long-term trust and community growth, not short-term speculation.
+    </p>
+  </section>
+
+  <!-- Vision -->
+  <div class="bg-sand">
+    <section style="max-width: 56rem; margin: 0 auto;">
+      <div class="section-header">
+        <span class="section-number font-sans">02</span>
+        <h2 class="section-title font-serif">Vision & Principles</h2>
+        <div class="section-line"></div>
+      </div>
+      
+      <p class="font-sans mb-6" style="font-size: 1.125rem; color: hsl(var(--foreground) / 0.8);">
+        To build a transparent and organically growing crypto ecosystem where community trust is the foundation.
+      </p>
+
+      <div class="grid-3">
+        <div class="principle">
+          <div class="principle-icon">👁</div>
+          <h3 class="font-sans">Transparency</h3>
+          <p class="font-sans">All major decisions announced publicly</p>
+        </div>
+        <div class="principle">
+          <div class="principle-icon">⚖</div>
+          <h3 class="font-sans">Fair Launch</h3>
+          <p class="font-sans">No pre-sale, no hidden allocations</p>
+        </div>
+        <div class="principle">
+          <div class="principle-icon">🪙</div>
+          <h3 class="font-sans">Fixed Supply</h3>
+          <p class="font-sans">Minting disabled permanently</p>
+        </div>
+        <div class="principle">
+          <div class="principle-icon">👥</div>
+          <h3 class="font-sans">Community First</h3>
+          <p class="font-sans">Decisions shaped by holders</p>
+        </div>
+        <div class="principle">
+          <div class="principle-icon">📈</div>
+          <h3 class="font-sans">Organic Growth</h3>
+          <p class="font-sans">No artificial pump schemes</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Problems -->
+  <section>
+    <div class="section-header">
+      <span class="section-number font-sans">03</span>
+      <h2 class="section-title font-serif">Problem Statement</h2>
+      <div class="section-line"></div>
+    </div>
+    
+    <div class="grid-2">
+      <div class="card">
+        <h3 class="font-sans mb-4" style="font-size: 1rem; font-weight: 600;">Common Issues</h3>
+        <ul style="list-style: none; font-size: 0.875rem; color: hsl(var(--muted-foreground));">
+          <li style="padding: 0.5rem 0; border-bottom: 1px solid hsl(var(--border) / 0.5);">• Pump and dump schemes</li>
+          <li style="padding: 0.5rem 0; border-bottom: 1px solid hsl(var(--border) / 0.5);">• Opaque tokenomics</li>
+          <li style="padding: 0.5rem 0; border-bottom: 1px solid hsl(var(--border) / 0.5);">• Founder-heavy allocations</li>
+          <li style="padding: 0.5rem 0;">• Short-term speculation focus</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 class="font-sans mb-4" style="font-size: 1rem; font-weight: 600;">CLAY's Approach</h3>
+        <ul style="list-style: none; font-size: 0.875rem; color: hsl(var(--muted-foreground));">
+          <li style="padding: 0.5rem 0; border-bottom: 1px solid hsl(var(--border) / 0.5);">✓ Transparent operations</li>
+          <li style="padding: 0.5rem 0; border-bottom: 1px solid hsl(var(--border) / 0.5);">✓ Fair distribution model</li>
+          <li style="padding: 0.5rem 0; border-bottom: 1px solid hsl(var(--border) / 0.5);">✓ Community governance</li>
+          <li style="padding: 0.5rem 0;">✓ Long-term vision</li>
+        </ul>
+      </div>
     </div>
   </section>
 
-  <!-- Tokenomics Section -->
-  <section id="tokenomics">
-    <h2>Tokenomics</h2>
-    <div class="tokenomics">
-      <p>Total Supply: 100,000,000 CLAY</p>
-      <p>Dev Token Locked: 20,000,000 CLAY 6,000,000 Vesting</p>
-      <p>Liquid Supply: 3,000,000 CLAY</p>
-      <p>LP Locked: 1,000,000 CLAY</p>
-      <p>Staking Pool: 10,000,000 CLAY (Reward 1%, Max Stake 10,000 CLAY)</p>
-      <p>Vesting Treasury: 60,000,000 CLAY</p>
-      <p style="margin-top:1rem; font-style:italic; color:#b78c63;">
-  🔒 Dev tokens are fully locked at launch — no early selling.
-</p>
+  <!-- Overview -->
+  <div class="bg-sand">
+    <section style="max-width: 56rem; margin: 0 auto;">
+      <div class="section-header">
+        <span class="section-number font-sans">04</span>
+        <h2 class="section-title font-serif">CLAY Overview</h2>
+        <div class="section-line"></div>
+      </div>
+      
+      <div class="card" style="padding: 0; overflow: hidden;">
+        <div class="token-grid">
+          <div class="token-item">
+            <p class="token-label font-sans">Token Name</p>
+            <p class="token-value font-serif">CLAY</p>
+          </div>
+          <div class="token-item">
+            <p class="token-label font-sans">Blockchain</p>
+            <p class="token-value font-serif">Solana</p>
+          </div>
+          <div class="token-item">
+            <p class="token-label font-sans">Total Supply</p>
+            <p class="token-value font-serif">100,000,000</p>
+          </div>
+          <div class="token-item">
+            <p class="token-label font-sans">Minting</p>
+            <p class="token-value font-serif">Disabled</p>
+          </div>
+          <div class="token-item">
+            <p class="token-label font-sans">Market</p>
+            <p class="token-value font-serif">Global</p>
+          </div>
+          <div class="token-item">
+            <p class="token-label font-sans">Type</p>
+            <p class="token-value font-serif">Meme token with PoS-style staking</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Tokenomics -->
+  <section>
+    <div class="section-header">
+      <span class="section-number font-sans">05</span>
+      <h2 class="section-title font-serif">Tokenomics</h2>
+      <div class="section-line"></div>
+    </div>
+    
+    <div class="allocation-bar">
+      <div class="allocation-segment" style="width: 50%; background: hsl(25 60% 45%);">50%</div>
+      <div class="allocation-segment" style="width: 25%; background: hsl(35 70% 50%);">25%</div>
+      <div class="allocation-segment" style="width: 15%; background: hsl(30 50% 35%);">15%</div>
+      <div class="allocation-segment" style="width: 10%; background: hsl(25 35% 25%);">10%</div>
+    </div>
+
+    <div class="grid-2">
+      <div class="allocation-card">
+        <div class="allocation-icon" style="background: hsl(25 60% 45% / 0.1); color: hsl(25 60% 45%);">🔒</div>
+        <div>
+          <h4 class="font-sans" style="font-weight: 600;">Liquidity Pool</h4>
+          <p class="font-sans text-primary" style="font-size: 1.25rem; font-weight: 600;">50,000,000 (50%)</p>
+          <p class="font-sans text-muted" style="font-size: 0.75rem;">Locked permanently</p>
+        </div>
+      </div>
+      <div class="allocation-card">
+        <div class="allocation-icon" style="background: hsl(35 70% 50% / 0.1); color: hsl(35 70% 50%);">🎁</div>
+        <div>
+          <h4 class="font-sans" style="font-weight: 600;">Staking Rewards</h4>
+          <p class="font-sans text-primary" style="font-size: 1.25rem; font-weight: 600;">25,000,000 (25%)</p>
+          <p class="font-sans text-muted" style="font-size: 0.75rem;">Vested over 12 months</p>
+        </div>
+      </div>
+      <div class="allocation-card">
+        <div class="allocation-icon" style="background: hsl(30 50% 35% / 0.1); color: hsl(30 50% 35%);">👥</div>
+        <div>
+          <h4 class="font-sans" style="font-weight: 600;">Team</h4>
+          <p class="font-sans text-primary" style="font-size: 1.25rem; font-weight: 600;">15,000,000 (15%)</p>
+          <p class="font-sans text-muted" style="font-size: 0.75rem;">Locked 6 months, vested 12 months</p>
+        </div>
+      </div>
+      <div class="allocation-card">
+        <div class="allocation-icon" style="background: hsl(25 35% 25% / 0.1); color: hsl(25 35% 25%);">📢</div>
+        <div>
+          <h4 class="font-sans" style="font-weight: 600;">Marketing</h4>
+          <p class="font-sans text-primary" style="font-size: 1.25rem; font-weight: 600;">10,000,000 (10%)</p>
+          <p class="font-sans text-muted" style="font-size: 0.75rem;">Community campaigns</p>
+        </div>
+      </div>
     </div>
   </section>
+
+  <!-- Staking -->
+  <div class="bg-sand">
+    <section style="max-width: 56rem; margin: 0 auto;">
+      <div class="section-header">
+        <span class="section-number font-sans">06</span>
+        <h2 class="section-title font-serif">Staking Model</h2>
+        <div class="section-line"></div>
+      </div>
+      
+      <div class="card">
+        <h3 class="font-serif mb-4" style="font-size: 1.5rem;">PoS-Style Staking</h3>
+        <p class="font-sans mb-6" style="color: hsl(var(--foreground) / 0.8);">
+          Rewards distributed from a fixed pool — no new tokens minted. This maintains token scarcity while rewarding long-term holders.
+        </p>
+        
+        <div class="grid-3">
+          <div style="text-align: center; padding: 1rem;">
+            <p class="font-sans text-muted" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;">Reward Pool</p>
+            <p class="font-serif text-primary" style="font-size: 1.5rem;">25M CLAY</p>
+          </div>
+          <div style="text-align: center; padding: 1rem;">
+            <p class="font-sans text-muted" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;">Distribution</p>
+            <p class="font-serif text-primary" style="font-size: 1.5rem;">12 Months</p>
+          </div>
+          <div style="text-align: center; padding: 1rem;">
+            <p class="font-sans text-muted" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;">New Tokens</p>
+            <p class="font-serif text-primary" style="font-size: 1.5rem;">Zero</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Governance -->
+  <section>
+    <div class="section-header">
+      <span class="section-number font-sans">07</span>
+      <h2 class="section-title font-serif">Governance</h2>
+      <div class="section-line"></div>
+    </div>
+    
+    <div class="grid-2">
+      <div class="card">
+        <span style="font-size: 0.75rem; color: hsl(var(--primary)); font-weight: 600;">PHASE 1</span>
+        <h3 class="font-serif" style="font-size: 1.25rem; margin: 0.5rem 0;">Initial</h3>
+        <p class="font-sans text-muted" style="font-size: 0.875rem;">
+          Core team makes decisions with full transparency and community input via social channels.
+        </p>
+      </div>
+      <div class="card">
+        <span style="font-size: 0.75rem; color: hsl(var(--primary)); font-weight: 600;">PHASE 2</span>
+        <h3 class="font-serif" style="font-size: 1.25rem; margin: 0.5rem 0;">DAO-Lite</h3>
+        <p class="font-sans text-muted" style="font-size: 0.875rem;">
+          Token-weighted voting on key decisions. Community proposals and transparent execution.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Roadmap -->
+  <div class="bg-sand">
+    <section style="max-width: 56rem; margin: 0 auto;">
+      <div class="section-header">
+        <span class="section-number font-sans">08</span>
+        <h2 class="section-title font-serif">Roadmap</h2>
+        <div class="section-line"></div>
+      </div>
+      
+      <div class="roadmap-item">
+        <div class="roadmap-line">
+          <div class="roadmap-dot"></div>
+          <div class="roadmap-connector"></div>
+        </div>
+        <div class="roadmap-content">
+          <span class="roadmap-phase font-sans">Q1 2025</span>
+          <h3 class="roadmap-title font-serif">Foundation</h3>
+          <ul class="roadmap-items font-sans">
+            <li>Token launch on Solana</li>
+            <li>Website and social media</li>
+            <li>Community building</li>
+            <li>Initial liquidity provision</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="roadmap-item">
+        <div class="roadmap-line">
+          <div class="roadmap-dot"></div>
+          <div class="roadmap-connector"></div>
+        </div>
+        <div class="roadmap-content">
+          <span class="roadmap-phase font-sans">Q2 2025</span>
+          <h3 class="roadmap-title font-serif">Growth</h3>
+          <ul class="roadmap-items font-sans">
+            <li>Staking platform launch</li>
+            <li>Partnership announcements</li>
+            <li>Community events</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="roadmap-item">
+        <div class="roadmap-line">
+          <div class="roadmap-dot upcoming"></div>
+          <div class="roadmap-connector"></div>
+        </div>
+        <div class="roadmap-content">
+          <span class="roadmap-phase font-sans">Q3-Q4 2025</span>
+          <h3 class="roadmap-title font-serif">Expansion</h3>
+          <ul class="roadmap-items font-sans">
+            <li>DAO-lite governance</li>
+            <li>Additional utilities</li>
+            <li>Ecosystem growth</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Risks -->
+  <section>
+    <div class="section-header">
+      <span class="section-number font-sans">09</span>
+      <h2 class="section-title font-serif">Risks</h2>
+      <div class="section-line"></div>
+    </div>
+    
+    <div class="grid-2">
+      <div class="risk-card">
+        <div class="risk-icon">⚠️</div>
+        <div>
+          <h3 class="font-sans">Market Volatility</h3>
+          <p class="font-sans">Cryptocurrency markets are highly volatile and unpredictable.</p>
+        </div>
+      </div>
+      <div class="risk-card">
+        <div class="risk-icon">⚠️</div>
+        <div>
+          <h3 class="font-sans">LP Fluctuations</h3>
+          <p class="font-sans">Liquidity pool values can fluctuate significantly.</p>
+        </div>
+      </div>
+      <div class="risk-card">
+        <div class="risk-icon">⚠️</div>
+        <div>
+          <h3 class="font-sans">Smart Contract Risks</h3>
+          <p class="font-sans">Potential vulnerabilities in smart contract code.</p>
+        </div>
+      </div>
+      <div class="risk-card">
+        <div class="risk-icon">⚠️</div>
+        <div>
+          <h3 class="font-sans">Regulatory Uncertainty</h3>
+          <p class="font-sans">Changing regulations may impact token operations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Conclusion -->
+  <div class="bg-sand">
+    <section style="max-width: 56rem; margin: 0 auto;">
+      <div class="section-header">
+        <span class="section-number font-sans">10</span>
+        <h2 class="section-title font-serif">Conclusion</h2>
+        <div class="section-line"></div>
+      </div>
+      
+      <div class="card">
+        <h3 class="font-serif mb-4" style="font-size: 1.5rem;">✓ Summary</h3>
+        <p class="font-sans mb-4" style="color: hsl(var(--foreground) / 0.8);">
+          CLAY prioritizes <strong class="text-primary">transparency</strong>, 
+          <strong class="text-primary">fair distribution</strong>, and 
+          <strong class="text-primary">community growth</strong>.
+        </p>
+        <p class="font-sans" style="color: hsl(var(--foreground) / 0.8);">
+          PoS-style staking provides utility without inflation. Key decisions are 
+          publicly announced to maintain holder trust.
+        </p>
+        
+        <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid hsl(var(--border));">
+          <p class="font-sans text-muted" style="font-size: 0.875rem; text-align: center; font-style: italic;">
+            "We're shaping CLAY — slowly, honestly, from zero."
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
 
   <!-- Footer -->
   <footer>
-    <p>Follow us on social:</p>
-    <a href="https://X.com/NotPrintedCLAY" target="_blank">X.com/NotPrintedCLAY</a>
-    <p>&copy; 2026 NotPrintedCLAY</p>
+    <h2 class="font-serif" style="font-size: 1.5rem; margin-bottom: 1rem;">CLAY</h2>
+    
+    <a href="https://x.com/NotPrintedCLAY" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" style="width: 1.25rem; height: 1.25rem; fill: currentColor;">
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+      </svg>
+      @NotPrintedCLAY
+    </a>
+    
+    <p class="footer-disclaimer font-sans">
+      CLAY is a meme token with no intrinsic value or expectation of financial return. 
+      There is no formal team or roadmap, and the coin is for entertainment purposes only. 
+      This is not financial advice. Always DYOR.
+    </p>
   </footer>
-
 </body>
 </html>
